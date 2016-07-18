@@ -3,7 +3,7 @@
     "description": "Easy Yii CMS module with extension of default feadback module",
     "type": "extension",
     "require": {
-        "noumo/easyii": "*"
+        "noumo/easyii": "dev-master"
     },
     "license": "GPLv3",
     "authors": [
