@@ -3,7 +3,7 @@
     "description": "Easy Yii CMS module with extension of default feedback module",
     "type": "extension",
     "require": {
-        "noumo/easyii": "dev-master"
+        "noumo/easyii": "^0.9"
     },
     "license": "GPLv3",
     "authors": [
