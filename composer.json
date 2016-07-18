@@ -1,0 +1,21 @@
+{
+    "name": "understeam/easyyii-feedback",
+    "description": "Easy Yii CMS module with extension of default feadback module",
+    "type": "extension",
+    "require": {
+        "noumo/easyii": "*"
+    },
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Anatoly Rugalev",
+            "email": "anatoly.rugalev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "understeam\\easyyii\\feedback\\": "src"
+        }
+    }
+}
