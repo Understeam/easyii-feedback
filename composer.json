@@ -1,9 +1,9 @@
 {
     "name": "understeam/easyyii-feedback",
-    "description": "Easy Yii CMS module with extension of default feadback module",
+    "description": "Easy Yii CMS module with extension of default feedback module",
     "type": "extension",
     "require": {
-        "noumo/easyii": "dev-master"
+        "noumo/easyii": "dev-dev"
     },
     "license": "GPLv3",
     "authors": [
