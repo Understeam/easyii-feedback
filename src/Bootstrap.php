@@ -24,7 +24,7 @@ class Bootstrap extends Component implements BootstrapInterface
 
     public function bootstrap($app)
     {
-        Yii::setAlias('@understeam', dirname(__DIR__));
+        Yii::setAlias('@understeam', dirname(dirname(__DIR__)));
         if (!isset(Yii::$app->i18n->translations['understeam/feedback'])) {
             Yii::$app->i18n->translations['understeam/feedback'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
