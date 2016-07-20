@@ -1,9 +1,9 @@
 <?php
-namespace understeam\easyyii\feedback\api;
+namespace understeam\easyii\feedback\api;
 
 use Yii;
-use understeam\easyyii\feedback\FeedbackModule;
-use understeam\easyyii\feedback\models\Feedback as FeedbackModel;
+use understeam\easyii\feedback\FeedbackModule;
+use understeam\easyii\feedback\models\Feedback as FeedbackModel;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 /**
  * Feedback module API
- * @package understeam\easyyii\feedback\api
+ * @package understeam\easyii\feedback\api
  *
  * @method static FeedbackModel model()
  * @method static ActiveForm begin($options = [])
@@ -29,9 +29,10 @@ class Feedback extends \yii\easyii\components\API
     public function api_begin($options = [])
     {
         $options = array_merge($this->_defaultFormOptions, $options);
+        $moduleName = FeedbackModule::getModuleName(FeedbackModule::className());
         $form = ActiveForm::begin([
             'enableClientValidation' => true,
-            'action' => Url::to(['/admin/' . FeedbackModule::getSelfName() . '/send'])
+            'action' => Url::to(['/admin/' . $moduleName . '/send'])
         ]);
         echo Html::hiddenInput('errorUrl', $options['errorUrl'] ? $options['errorUrl'] : Url::current([self::SENT_VAR => 0]));
         echo Html::hiddenInput('successUrl', $options['successUrl'] ? $options['successUrl'] : Url::current([self::SENT_VAR => 1]));

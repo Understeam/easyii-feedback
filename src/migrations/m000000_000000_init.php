@@ -12,6 +12,8 @@ class m000000_000000_init extends \yii\db\Migration
     {
         $this->createTable('understeam_feedback', [
             'feedback_id' => $this->primaryKey(),
+            'answer_subject' => $this->string(),
+            'answer_text' => $this->text(),
             'dataJson' => $this->text(),
             'time' => $this->integer()->defaultValue(0),
             'status' => $this->boolean()->defaultValue(0),

@@ -1,12 +1,12 @@
 <?php
-namespace understeam\easyyii\feedback\models;
+namespace understeam\easyii\feedback\models;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\easyii\behaviors\CalculateNotice;
 use yii\easyii\helpers\Mail;
 use yii\easyii\models\Setting;
-use understeam\easyyii\feedback\FeedbackModule;
+use understeam\easyii\feedback\FeedbackModule;
 use yii\easyii\validators\ReCaptchaValidator;
 use yii\easyii\validators\EscapeValidator;
 use yii\helpers\ArrayHelper;
@@ -19,9 +19,11 @@ use yii\helpers\Url;
  * @link https://github.com/AnatolyRugalev
  *
  * @property integer $feedback_id
- * @property integer $dataJson
+ * @property string $dataJson
  * @property integer $time
  * @property integer $status
+ * @property string $answer_subject
+ * @property string $answer_text
  */
 class Feedback extends \yii\easyii\components\ActiveRecord
 {
@@ -71,6 +73,40 @@ class Feedback extends \yii\easyii\components\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
+
+        if ($insert) {
+            $this->mailAdmin();
+        }
+    }
+
+    public function mailAdmin()
+    {
+        $moduleName = FeedbackModule::getModuleName(FeedbackModule::className());
+        $settings = Yii::$app->getModule('admin')->activeModules[$moduleName]->settings;
+
+        if (!$settings['mailAdminOnNewFeedback']) {
+            return false;
+        }
+        return Mail::send(
+            Setting::get('admin_email'),
+            $settings['subjectOnNewFeedback'],
+            $settings['templateOnNewFeedback'],
+            ['feedback' => $this, 'link' => Url::to(['/admin/' . $moduleName . '/a/view', 'id' => $this->primaryKey], true)]
+        );
+    }
+
+    public function sendAnswer()
+    {
+        $moduleName = FeedbackModule::getModuleName(FeedbackModule::className());
+        $settings = Yii::$app->getModule('admin')->activeModules[$moduleName]->settings;
+
+        return Mail::send(
+            $this->email,
+            $this->answer_subject,
+            $settings['answerTemplate'],
+            ['feedback' => $this],
+            ['replyTo' => Setting::get('admin_email')]
+        );
     }
 
     public function attributeLabels()

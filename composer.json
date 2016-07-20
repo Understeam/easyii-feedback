@@ -1,9 +1,9 @@
 {
-    "name": "understeam/easyyii-feedback",
+    "name": "understeam/easyii-feedback",
     "description": "Easy Yii CMS module with extension of default feedback module",
     "type": "extension",
     "require": {
-        "noumo/easyii": "^0.9"
+        "noumo/easyii": "dev-master"
     },
     "license": "GPLv3",
     "authors": [
@@ -15,7 +15,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "understeam\\easyyii\\feedback\\": "src"
+            "understeam\\easyii\\feedback\\": "src"
         }
     }
 }

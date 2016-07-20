@@ -1,9 +1,21 @@
 <?php
-namespace understeam\easyyii\feedback;
+
+namespace understeam\easyii\feedback;
+
+use Yii;
 
 class FeedbackModule extends \yii\easyii\components\Module
 {
     public $settings = [
+        'mailAdminOnNewFeedback' => true,
+        'subjectOnNewFeedback' => 'New feedback',
+        'templateOnNewFeedback' => '@easyii/modules/feedback/mail/en/new_feedback',
+
+        'answerTemplate' => '@easyii/modules/feedback/mail/en/answer',
+        'answerSubject' => 'Answer on your feedback message',
+        'answerHeader' => 'Hello,',
+        'answerFooter' => 'Best regards.',
+
         'formFields' => 'email:E-mail, name:Укажите имя, url:URL, phone:Номер телефона',
         'gridFields' => 'email, name, url, phone',
     ];
@@ -22,7 +34,12 @@ class FeedbackModule extends \yii\easyii\components\Module
     public static function getFormFields()
     {
         if (!isset(self::$_formFields)) {
-            $config = explode(',', self::setting('formFields'));
+            $moduleName = self::getModuleName(self::className());
+            $settings = Yii::$app->getModule('admin')->activeModules[$moduleName]->settings;
+            if (!isset($settings['formFields'])) {
+                return [];
+            }
+            $config = explode(',', $settings['formFields']);
             $fields = [];
             foreach ($config as $item) {
                 if (!$item) {
@@ -48,7 +65,12 @@ class FeedbackModule extends \yii\easyii\components\Module
     {
         if (!isset(self::$_gridFields)) {
             $formFields = self::getFormFields();
-            $config = explode(',', self::setting('gridFields'));
+            $moduleName = self::getModuleName(self::className());
+            $settings = Yii::$app->getModule('admin')->activeModules[$moduleName]->settings;
+            if (!isset($settings['gridFields'])) {
+                return [];
+            }
+            $config = explode(',', $settings['gridFields']);
             $fields = [];
             foreach ($config as $item) {
                 if (!$item) {

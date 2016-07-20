@@ -1,6 +1,6 @@
 <?php
-use understeam\easyyii\feedback\FeedbackModule;
-use understeam\easyyii\feedback\models\Feedback;
+use understeam\easyii\feedback\FeedbackModule;
+use understeam\easyii\feedback\models\Feedback;
 
 $this->title = Yii::t('understeam/feedback', 'Feedback');
 $module = $this->context->module->id;
@@ -39,12 +39,21 @@ $columns = array_merge($columns, [
     [
         'format' => 'raw',
         'value' => function (Feedback $model) use ($module) {
+            return \yii\helpers\Html::a("", ['/admin/' . $module . '/a/view', 'id' => $model->primaryKey], [
+                'class' => 'glyphicon glyphicon-remove',
+                'title' => Yii::t('easyii', 'View item'),
+            ]);
+        },
+    ],
+    [
+        'format' => 'raw',
+        'value' => function (Feedback $model) use ($module) {
             return \yii\helpers\Html::a("", ['/admin/' . $module . '/a/delete', 'id' => $model->primaryKey], [
                 'class' => 'glyphicon glyphicon-remove confirm-delete',
                 'title' => Yii::t('easyii', 'Delete item'),
             ]);
         },
-    ]
+    ],
 ]);
 ?>
 <?= \yii\grid\GridView::widget([

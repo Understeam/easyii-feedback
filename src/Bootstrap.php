@@ -5,15 +5,14 @@
  * @license https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)
  */
 
-namespace understeam\easyyii\feedback;
+namespace understeam\easyii\feedback;
 
-use understeam\easyyii\feedback\models\Feedback;
+use understeam\easyii\feedback\models\Feedback;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
 use yii\easyii\helpers\WebConsole;
-use yii\helpers\Url;
 
 /**
  * Class Bootstrap TODO: Write class description
@@ -30,7 +29,7 @@ class Bootstrap extends Component implements BootstrapInterface
             Yii::$app->i18n->translations['understeam/feedback'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en-US',
-                'basePath' => '@understeam/easyyii-feedback/src/messages',
+                'basePath' => '@understeam/easyii-feedback/src/messages',
             ];
         }
         try {
