@@ -40,7 +40,7 @@ $columns = array_merge($columns, [
         'format' => 'raw',
         'value' => function (Feedback $model) use ($module) {
             return \yii\helpers\Html::a("", ['/admin/' . $module . '/a/view', 'id' => $model->primaryKey], [
-                'class' => 'glyphicon glyphicon-remove',
+                'class' => 'glyphicon glyphicon-eye-open',
                 'title' => Yii::t('easyii', 'View item'),
             ]);
         },
