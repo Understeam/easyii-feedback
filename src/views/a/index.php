@@ -12,7 +12,12 @@ $module = $this->context->module->id;
 $columns = [
     [
         'attribute' => 'primaryKey',
-        'header' => '#'
+        'header' => '#',
+        'headerOptions' => [
+            'style' => [
+                'width' => '30px',
+            ]
+        ],
     ],
 ];
 $gridColumns = FeedbackModule::getGridColumns();
@@ -35,6 +40,11 @@ $columns = array_merge($columns, [
                 return "<span class=\"text-danger\">" . Yii::t('easyii', 'No') . "</span>";
             }
         },
+        'headerOptions' => [
+            'style' => [
+                'width' => '40px',
+            ]
+        ],
     ],
     [
         'format' => 'raw',
@@ -44,6 +54,11 @@ $columns = array_merge($columns, [
                 'title' => Yii::t('easyii', 'View item'),
             ]);
         },
+        'headerOptions' => [
+            'style' => [
+                'width' => '30px',
+            ]
+        ],
     ],
     [
         'format' => 'raw',
@@ -53,6 +68,11 @@ $columns = array_merge($columns, [
                 'title' => Yii::t('easyii', 'Delete item'),
             ]);
         },
+        'headerOptions' => [
+            'style' => [
+                'width' => '30px',
+            ]
+        ],
     ],
 ]);
 ?>
