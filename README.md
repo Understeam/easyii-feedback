@@ -3,18 +3,18 @@
 Установить расширение можно через [composer](http://getcomposer.org/).
 
 ```
-$ php composer.phar require understeam\easyyii-feedback
+$ php composer.phar require understeam\easyii-feedback
 ```
 
 ## Конфигурация
 
-Для запуска расширения необходимо добавить класс `understeam\easyyii\feedback\Bootstrap` в секцию `bootstrap` конфиг-файла `web.php`:
+Для запуска расширения необходимо добавить класс `understeam\easyii\feedback\Bootstrap` в секцию `bootstrap` конфиг-файла `web.php`:
 
 ```
 return [
     'bootstrap' => [
         'log',
-        'understeam\easyyii\feedback\Bootstrap',
+        'understeam\easyii\feedback\Bootstrap',
     ],
 ];
 ```
@@ -28,7 +28,7 @@ return [
 Создайте новый модуль с желаемым именем (предпочтительно `feedback`). Укажите путь до класса:
 
 ```
-understeam\easyyii\feedback\FeedbackModule
+understeam\easyii\feedback\FeedbackModule
 ```
 
 Иконка по умолчанию: `earphone`
@@ -47,7 +47,7 @@ understeam\easyyii\feedback\FeedbackModule
 ```php
 
 <?php
-use understeam\easyyii\feedback\api\Feedback;
+use understeam\easyii\feedback\api\Feedback;
 
 $model = Feedback::model();
 $form = Feedback::begin();
