@@ -34,8 +34,8 @@ class Feedback extends \yii\easyii\components\API
             'enableClientValidation' => true,
             'action' => Url::to(['/admin/' . $moduleName . '/send'])
         ]);
-        echo Html::hiddenInput('errorUrl', $options['errorUrl'] ? $options['errorUrl'] : Url::current([self::SENT_VAR => 0]));
-        echo Html::hiddenInput('successUrl', $options['successUrl'] ? $options['successUrl'] : Url::current([self::SENT_VAR => 1]));
+        echo Html::hiddenInput('errorUrl', $options['errorUrl'] ? $options['errorUrl'] : Url::current());
+        echo Html::hiddenInput('successUrl', $options['successUrl'] ? $options['successUrl'] : Url::current());
         return $form;
     }
 
