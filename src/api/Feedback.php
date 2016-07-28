@@ -5,6 +5,7 @@ use Yii;
 use understeam\easyii\feedback\FeedbackModule;
 use understeam\easyii\feedback\models\Feedback as FeedbackModel;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -30,12 +31,24 @@ class Feedback extends \yii\easyii\components\API
     {
         $options = array_merge($this->_defaultFormOptions, $options);
         $moduleName = FeedbackModule::getModuleName(FeedbackModule::className());
-        $form = ActiveForm::begin([
+        if (isset($options['successUrl'])) {
+            $successUrl = $options['successUrl'];
+            unset($options['successUrl']);
+        } else {
+            $successUrl = Url::current();
+        }
+        if (isset($options['errorUrl'])) {
+            $errorUrl = $options['errorUrl'];
+            unset($options['errorUrl']);
+        } else {
+            $errorUrl = Url::current();
+        }
+        $form = ActiveForm::begin(ArrayHelper::merge($options, [
             'enableClientValidation' => true,
             'action' => Url::to(['/admin/' . $moduleName . '/send'])
-        ]);
-        echo Html::hiddenInput('errorUrl', $options['errorUrl'] ? $options['errorUrl'] : Url::current());
-        echo Html::hiddenInput('successUrl', $options['successUrl'] ? $options['successUrl'] : Url::current());
+        ]));
+        echo Html::hiddenInput('errorUrl', $errorUrl);
+        echo Html::hiddenInput('successUrl', $successUrl);
         return $form;
     }
 
