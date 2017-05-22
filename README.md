@@ -3,7 +3,7 @@
 Установить расширение можно через [composer](http://getcomposer.org/).
 
 ```
-$ php composer.phar require understeam\easyii-feedback
+$ php composer.phar require understeam/easyii-feedback
 ```
 
 ## Конфигурация
